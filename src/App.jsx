@@ -20,14 +20,16 @@ const [apiResponse, setApiResponse] = useState('');
           .then(res => setApiResponse(res));
   }
 
-  useEffect(() => callAPI(), []);
-
-  fetch('https://random.dog/woof.json')
+  useEffect(() => { fetch('https://random.dog/woof.json')
       .then(response => response.json())
       .then(data => {
         console.log(data);
-        setDogImage(data);
+        setDogImage(data.url);
+        callAPI();
       });
+    }, []);
+
+
 
 
   return (
@@ -43,9 +45,8 @@ const [apiResponse, setApiResponse] = useState('');
         <p>{apiResponse}</p>
       </div>
       <div>
-        <p>{dogImage}</p>
+        <img src={dogImage}/>
       </div>
-
   </div>
   );
 }
