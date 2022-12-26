@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Chatbot from "react-chatbot-kit";
 import 'react-chatbot-kit/build/main.css';
@@ -45,7 +44,7 @@ const [apiResponse, setApiResponse] = useState('');
         <p>{apiResponse}</p>
       </div>
       <div>
-        <img src={dogImage}/>
+        <img styles={{maxHeight: '50vh', maxWidth: '50vw',}} src={dogImage} alt={'random dog'}/>
       </div>
   </div>
   );
