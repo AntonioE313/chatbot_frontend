@@ -12,6 +12,7 @@ import ActionProvider from "./chatbotUtils/ActionProvider";
 function App() {
 
 const [apiResponse, setApiResponse] = useState('');
+  const [dogImage, setDogImage] = useState();
 
   const callAPI = () => {
       fetch("http://localhost:9000/testAPI")
@@ -21,7 +22,14 @@ const [apiResponse, setApiResponse] = useState('');
 
   useEffect(() => callAPI(), []);
 
-  // style={{maxHeight: '200px', maxWidth: '200px'}}
+  fetch('https://random.dog/woof.json')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        setDogImage(data);
+      });
+
+
   return (
     <div className='App' style={{display: 'inlineBlock'}}>
     <div>
@@ -34,6 +42,10 @@ const [apiResponse, setApiResponse] = useState('');
       <div>
         <p>{apiResponse}</p>
       </div>
+      <div>
+        <p>{dogImage}</p>
+      </div>
+
   </div>
   );
 }
